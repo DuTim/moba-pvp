@@ -3,7 +3,7 @@
  * @Author: DuTim
  * @Date: 2019-12-24 14:39:24
  * @LastEditors  : Dutim
- * @LastEditTime : 2020-01-28 11:42:16
+ * @LastEditTime : 2020-02-03 21:10:09
  -->
 <template>
   <div>
@@ -16,7 +16,7 @@
       <el-form-item label="图标">
         <el-upload
           class="avatar-uploader"
-          :action="uploadURL"
+          :action="uploadurl"
           :headers="getAuthHeaders()"
           :show-file-list="false"
           :on-success="afterUpload"

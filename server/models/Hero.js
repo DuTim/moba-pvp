@@ -3,7 +3,7 @@
  * @Author: DuTim
  * @Date: 2019-12-24 15:11:09
  * @LastEditors  : Dutim
- * @LastEditTime : 2020-01-27 15:46:03
+ * @LastEditTime : 2020-01-31 22:05:30
  */
 const mongoose = require('mongoose')
 //结构
@@ -15,6 +15,9 @@ const schema = new mongoose.Schema({
         type: String
     },
     avatar: {
+        type: String
+    },
+    banner: {
         type: String
     },
     categories: [{
@@ -48,15 +51,21 @@ const schema = new mongoose.Schema({
         tips: {
             type: String
         },
+        delay: {
+            type: String
+        },
+        cast: {
+            type: String
+        }
     }],
 
     items1: [{
         type: mongoose.SchemaTypes.ObjectId,
-        ref: 'Items'
+        ref: 'Item'
     }],
     items2: [{
         type: mongoose.SchemaTypes.ObjectId,
-        ref: 'Items'
+        ref: 'Item'
     }],
     usageTips: {
         type: String
@@ -64,7 +73,7 @@ const schema = new mongoose.Schema({
     battleTips: {
         type: String
     },
-    partner: [{
+    partners: [{
         hero: {
             type: mongoose.SchemaTypes.ObjectId,
             ref: 'Hero'
@@ -76,5 +85,5 @@ const schema = new mongoose.Schema({
     }]
 })
 //模型
-const Hero = mongoose.model('Hero', schema)
+const Hero = mongoose.model('Hero', schema, 'heroes')
 module.exports = Hero

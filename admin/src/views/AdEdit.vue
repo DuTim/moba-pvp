@@ -3,7 +3,7 @@
  * @Author: DuTim
  * @Date: 2019-12-24 14:39:24
  * @LastEditors  : Dutim
- * @LastEditTime : 2020-01-28 11:41:17
+ * @LastEditTime : 2020-01-30 22:22:22
  -->
 <template>
   <div>
@@ -25,7 +25,7 @@
             <el-form-item label="图片">
               <el-upload
                 class="avatar-uploader"
-                :action="uploadURL"
+                :action="uploadurl"
                 :headers="getAuthHeaders()"
                 :show-file-list="false"
                 :on-success="res=>{$set(item,'image',res.url)}"

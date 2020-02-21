@@ -2,8 +2,8 @@
  * @Description: 
  * @Author: DuTim
  * @Date: 2019-12-24 14:39:24
- * @LastEditors  : Dutim
- * @LastEditTime : 2020-01-28 11:40:38
+ * @LastEditors: Dutim
+ * @LastEditTime: 2020-02-18 19:57:41
  -->
 <template>
   <div>
@@ -21,13 +21,24 @@
           <el-form-item label="头像">
             <el-upload
               class="avatar-uploader"
-              :action="uploadURL"
+              :action="uploadurl"
               :headers="getAuthHeaders()"
               :show-file-list="false"
-
-              :on-success="afterUpload"
+              :on-success="res=>{$set(model,'avatar',res.url)}"
             >
               <img v-if="model.avatar" :src="model.avatar" class="avatar" />
+              <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+            </el-upload>
+          </el-form-item>
+          <el-form-item label="背景">
+            <el-upload
+              class="avatar-uploader"
+              :action="uploadurl"
+              :headers="getAuthHeaders()"
+              :show-file-list="false"
+              :on-success="res=>{$set(model,'banner',res.url)}"
+            >
+              <img v-if="model.banner" :src="model.banner" class="avatar" />
               <i v-else class="el-icon-plus avatar-uploader-icon"></i>
             </el-upload>
           </el-form-item>
@@ -84,7 +95,7 @@
               <el-form-item label="图标">
                 <el-upload
                   class="avatar-uploader"
-                  :action="uploadURL"
+                  :action="uploadurl"
                   :headers="getAuthHeaders()"
                   :show-file-list="false"
                   :on-success="res=>{$set(item,'icon',res.url)}"
@@ -92,6 +103,12 @@
                   <img v-if="item.icon" :src="item.icon" class="avatar" />
                   <i v-else class="el-icon-plus avatar-uploader-icon"></i>
                 </el-upload>
+              </el-form-item>
+              <el-form-item label="冷却值">
+                <el-input v-model="item.delay"></el-input>
+              </el-form-item>
+              <el-form-item label="消耗">
+                <el-input v-model="item.cast"></el-input>
               </el-form-item>
               <el-form-item label="描述">
                 <el-input v-model="item.description" type="textarea"></el-input>
@@ -101,6 +118,30 @@
               </el-form-item>
               <el-form-item>
                 <el-button size="small" type="danger" @click="model.skills.splice(index,1)">删除</el-button>
+              </el-form-item>
+            </el-col>
+          </el-row>
+        </el-tab-pane>
+
+        <el-tab-pane label="最佳搭档">
+          <el-button type="text" @click="model.partners.push({})">
+            <i class="el-icon-plus"></i>添加英雄
+          </el-button>
+          <el-row type="flex" style="flex-wrap:wrap">
+            <el-col :md="12" v-for="(item, index) in model.partners" :key="index">
+              <el-form-item label="英雄">
+                <el-select filterable v-model="item.hero">
+                  <el-option
+                    v-for="hero in heroes"
+                    :key="hero._id"
+                    :label="hero.name"
+                    :value="hero._id"
+                  ></el-option>
+                </el-select>
+              </el-form-item>
+
+              <el-form-item label="描述">
+                <el-input v-model="item.description" type="textarea"></el-input>
               </el-form-item>
             </el-col>
           </el-row>
@@ -119,6 +160,8 @@ export default {
     this.fetchCategories();
     this.fetchItems();
     console.log(this.getAuthHeaders());
+    console.log(`${this.uploadurl} url`);
+    this.fetchHeroes();
   },
   props: { id: {} },
   data() {
@@ -133,8 +176,10 @@ export default {
         avatar: "",
         scores: {},
         usageTipes: "",
-        skills: []
-      }
+        skills: [],
+        partners: []
+      },
+      heroes:[]
     };
   },
   computed: {
@@ -149,7 +194,6 @@ export default {
     },
     async save() {
       console.log(this.model);
-
       let res;
       if (this.id) {
         res = await this.$http.put(`rest/heros/${this.id}`, this.model);
@@ -176,6 +220,10 @@ export default {
     async fetchItems() {
       const res = await this.$http.get(`rest/items`);
       this.items = res.data;
+    },
+     async fetchHeroes() {
+      const res = await this.$http.get(`rest/heroes`);
+      this.heroes = res.data;
     }
   }
 };

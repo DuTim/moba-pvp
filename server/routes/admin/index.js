@@ -2,8 +2,8 @@
  * @Description: 
  * @Author: DuTim
  * @Date: 2019-12-24 15:02:15
- * @LastEditors  : Dutim
- * @LastEditTime : 2020-01-28 10:53:51
+ * @LastEditors: Dutim
+ * @LastEditTime : 2020-01-30 21:15:01
  */
 module.exports = app => {
     const jwt = require("jsonwebtoken")
@@ -18,19 +18,17 @@ module.exports = app => {
     //创建资源
     router.post('/',
         async (req, res) => {
-            console.log("ok");
+            // console.log("ok");
             const model = await req.Model.create(req.body)
-            console.log("ok1");
+            // console.log("ok1");
             res.send(model)
         })
     //修改资源
     router.put('/:id', async (req, res) => {
         //  console.log(req.body);      
         // console.log(req.params.id);  
-
         const model = await req.Model.findByIdAndUpdate(req.params.id, req.body)
         // console.log(model);
-
         res.send(model)
     })
     //删除资源
@@ -38,8 +36,7 @@ module.exports = app => {
         // console.log(req.body);      
         // console.log(req.params.id);  
         const model = await req.Model.findByIdAndDelete(req.params.id)
-        console.log(model);
-
+        // console.log(model);
         res.send({
             success: true
         })
@@ -50,12 +47,12 @@ module.exports = app => {
         if (req.Model.modelName === 'Category') {
             queryOptions.populate = "parent"
         }
-        const list = await req.Model.find().setOptions(queryOptions).limit(10)
+        const list = await req.Model.find().setOptions(queryOptions).limit(100)
         res.send(list)
     })
     //获取单个
     router.get("/:id", async (req, res) => {
-        const item = await req.Model.findById(req.params.id).limit(10)
+        const item = await req.Model.findById(req.params.id).limit(100)
         res.send(item)
     })
     //资源中间件

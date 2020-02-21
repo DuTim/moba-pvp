@@ -3,7 +3,7 @@
  * @Author: DuTim
  * @Date: 2019-12-24 14:28:41
  * @LastEditors  : Dutim
- * @LastEditTime : 2020-01-28 11:50:04
+ * @LastEditTime : 2020-01-29 22:01:01
  -->
 <template>
   <el-container style="height: 100vh">
@@ -71,7 +71,7 @@
       </el-header>
 
       <el-main>
-        <router-view></router-view>
+        <router-view :key="$route.path" ></router-view>
         <!-- <el-table :data="tableData">
         <el-table-column prop="date" label="日期" width="140">
         </el-table-column>

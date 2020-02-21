@@ -3,7 +3,7 @@
  * @Author: DuTim
  * @Date: 2019-12-24 15:07:04
  * @LastEditors  : Dutim
- * @LastEditTime : 2020-01-26 23:13:05
+ * @LastEditTime : 2020-02-01 16:51:12
  */
 module.exports = app => {
     const mongoose = require('mongoose')
@@ -12,4 +12,5 @@ module.exports = app => {
         useNewUrlParser: true,
         useFindAndModify: true 
     })
+     require('require-all')(__dirname + '/../models')
 }

@@ -3,7 +3,7 @@
  * @Author: DuTim
  * @Date: 2019-12-24 14:39:24
  * @LastEditors  : Dutim
- * @LastEditTime : 2020-01-26 20:56:43
+ * @LastEditTime : 2020-01-31 14:58:26
  -->
 <template>
   <div>
@@ -49,7 +49,7 @@ export default {
       this.items = res.data;
     },
     async remove(row) {
-      this.$confirm(`是否确认删除分类? ${row.name}`, "提示", {
+      this.$confirm(`是否确认删除物品? ${row.name}`, "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
         type: "warning"
