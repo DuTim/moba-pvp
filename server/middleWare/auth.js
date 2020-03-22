@@ -3,7 +3,7 @@
  * @Author: DuTim
  * @Date: 2020-01-28 10:31:19
  * @LastEditors: Dutim
- * @LastEditTime: 2020-02-17 15:34:45
+ * @LastEditTime: 2020-03-22 09:50:53
  */
 
 
@@ -25,11 +25,8 @@ module.exports = (options) => {
             assert(token, 401, "无效的jwt token")
             req.user = await AdminUser.findById(id)
             console.log(req.user);
+            assert(req.user, 401, "请先登录")
         }
-
-
-
-        assert(req.user, 401, "请先登录")
         await next()
     }
 }

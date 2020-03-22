@@ -3,7 +3,7 @@
  * @Author: DuTim
  * @Date: 2019-12-24 15:02:15
  * @LastEditors: Dutim
- * @LastEditTime : 2020-01-30 21:15:01
+ * @LastEditTime: 2020-03-22 09:47:16
  */
 module.exports = app => {
     const jwt = require("jsonwebtoken")
@@ -100,9 +100,7 @@ module.exports = app => {
             _id: user._id,
             username: user.username
         }, app.get("SECRET"))
-        res.send({
-            token
-        })
+        res.send({token:"Bearer "+token})
     })
     app.use(async (err, req, res, next) => {
         res.status(err.statusCode || 500).send({
