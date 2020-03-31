@@ -2,14 +2,15 @@
  * @Description: 
  * @Author: DuTim
  * @Date: 2019-12-24 14:52:47
- * @LastEditors  : Dutim
- * @LastEditTime : 2020-01-28 10:03:13
+ * @LastEditors: Dutim
+ * @LastEditTime: 2020-03-31 22:13:15
  */
 import axios from 'axios'
 import Vue from 'vue'
 import router from './router/index'
 let http = axios.create({
-    baseURL: 'http://localhost:3000/admin/api'
+    baseURL:process.env.VUE_APP_API_URL || '/admin/api',
+    // baseURL: 'http://localhost:3000/admin/api'
 })
 http.interceptors.request.use(function (config) {
     // Do something before request is sent
