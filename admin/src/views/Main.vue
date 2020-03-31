@@ -2,8 +2,8 @@
  * @Description: 
  * @Author: DuTim
  * @Date: 2019-12-24 14:28:41
- * @LastEditors  : Dutim
- * @LastEditTime : 2020-01-29 22:01:01
+ * @LastEditors: Dutim
+ * @LastEditTime: 2020-03-23 20:56:01
  -->
 <template>
   <el-container style="height: 100vh">
@@ -69,7 +69,6 @@
         </el-dropdown>
         <span>{{user.username}}</span>
       </el-header>
-
       <el-main>
         <router-view :key="$route.path" ></router-view>
         <!-- <el-table :data="tableData">

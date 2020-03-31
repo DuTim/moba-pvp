@@ -2,8 +2,8 @@
  * @Description: 
  * @Author: DuTim
  * @Date: 2020-01-28 20:20:15
- * @LastEditors  : Dutim
- * @LastEditTime : 2020-02-06 20:04:09
+ * @LastEditors: Dutim
+ * @LastEditTime: 2020-03-22 10:38:07
  -->
 <template>
   <div class="home">
@@ -95,8 +95,6 @@ export default {
       swiperOption: {
         pagination: {el: ".pagination-home"},
         autoplay : {delay:5000}
-
-        
       }
     };
   },
