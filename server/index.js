@@ -3,7 +3,7 @@
  * @Author: DuTim
  * @Date: 2019-12-24 14:22:14
  * @LastEditors: Dutim
- * @LastEditTime: 2020-03-31 22:34:55
+ * @LastEditTime: 2020-04-01 01:06:55
  */
 const express = require('express')
 const app = express();
@@ -13,8 +13,8 @@ app.use(express.json())
 //cors
 app.use(require('cors')())
 // 文件上传
-app.use('/uploads', express.static(__dirname + '/uploads'))
 app.use('/admin', express.static(__dirname + '/admin'))
+app.use('/uploads', express.static(__dirname + '/uploads'))
 app.use('/', express.static(__dirname + '/web'))
 //db
 
