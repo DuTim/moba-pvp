@@ -3,7 +3,7 @@
  * @Author: DuTim
  * @Date: 2019-12-24 15:02:15
  * @LastEditors: Dutim
- * @LastEditTime: 2020-03-22 09:47:16
+ * @LastEditTime: 2020-04-01 02:09:07
  */
 module.exports = app => {
     const jwt = require("jsonwebtoken")
@@ -70,7 +70,7 @@ module.exports = app => {
         const file = req.file;
         // let backNameArray = file.originalname.split(".")
         //    let backName=backNameArray[backNameArray.length-1]
-        file.url = `http://localhost:3000/uploads/${file.filename}`
+        file.url = `http://test.yyb-project.online/uploads/${file.filename}`
         res.send(file)
 
 
